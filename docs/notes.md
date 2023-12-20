@@ -10,6 +10,12 @@ Furtehremore, there is this specific section on ressources which looks really go
 A very good Medium article: [How to Fine-Tune Llama2 for Python Coding on Consumer Hardware
 ](https://towardsdatascience.com/how-to-fine-tune-llama2-for-python-coding-on-consumer-hardware-46942fa3cf92).
 
+#### Weights & Biases
+Maybe `WandB` has some good tips and tricks for how to fine-tune an LLM: [Training and Fine-tuning Large Language Models (LLMs)](https://www.wandb.courses/courses/take/training-fine-tuning-LLMs/lessons/48864885-course-introduction)
+
+
+#### PEFT
+Should one write something about [State-of-the-art Parameter-Efficient Fine-Tuning (PEFT) methods](https://github.com/huggingface/peft), cause I'm quite certain that I'm using it in the code.
 
 ### Theoretical approach
 #### LoRA
