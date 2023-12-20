@@ -22,3 +22,5 @@ Dettmers, T., Pagnoni, A., Holtzman, A., & Zettlemoyer, L. (2023). QLoRA: Effici
 
 
 ## MLOps
+### CookieCutter
+Nikki is the GOAT. When in doubt just look at his [MLOps repository](https://github.com/SkafteNicki/mlops_template/tree/master)!
