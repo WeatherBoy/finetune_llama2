@@ -1,2 +1,5 @@
 .vscode
 /llama2_venv
+/data
+/models
+
