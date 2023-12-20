@@ -1,9 +1,7 @@
-from transformers import (
-    pipeline,
-    AutoTokenizer,
-)
-from fine_tune_llama2 import Config
 import argparse
+
+from fine_tune_llama2 import Config
+from transformers import AutoTokenizer, pipeline
 
 
 def generate_response(model_name, tokenizer, prompt, max_length=600):

@@ -83,3 +83,6 @@ upload_to_vcs_release = true
 [tool.black]
 line-length = 144
 target-version = ['py310']
+
+[tool.isort]
+skip = ["llama2_venv"]
