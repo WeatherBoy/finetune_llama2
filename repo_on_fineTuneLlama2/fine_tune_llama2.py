@@ -1,23 +1,19 @@
-import os
-import torch
-import time
 import functools
-from datasets import load_dataset
-from transformers import (
-    TrainingArguments,
-    pipeline,
-    BitsAndBytesConfig,
-    AutoTokenizer,
-    AutoModelForCausalLM,
-    EarlyStoppingCallback,
-)
-from datasets import Dataset
-import pandas as pd
-from bs4 import BeautifulSoup
-from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
-from trl import SFTTrainer
-import matplotlib.pyplot as plt
+import os
 import pickle
+import time
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import torch
+from bs4 import BeautifulSoup
+from datasets import Dataset, load_dataset
+from peft import (LoraConfig, PeftModel, get_peft_model,
+                  prepare_model_for_kbit_training)
+from transformers import (AutoModelForCausalLM, AutoTokenizer,
+                          BitsAndBytesConfig, EarlyStoppingCallback,
+                          TrainingArguments, pipeline)
+from trl import SFTTrainer
 
 
 class Config:

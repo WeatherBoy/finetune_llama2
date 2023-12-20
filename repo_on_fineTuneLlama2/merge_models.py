@@ -1,6 +1,4 @@
-from fine_tune_llama2 import (
-    merge_and_save_weights
-)
+from fine_tune_llama2 import merge_and_save_weights
 
 
 def merge_models():
