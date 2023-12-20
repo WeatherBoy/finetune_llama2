@@ -4,6 +4,7 @@ This repository is an attempt at fine-tuning and testing the Llama2 framework fo
 ## Project structure
 The project follows this structure (as declared by the [MLOps DTU course 02476](https://github.com/SkafteNicki/mlops_template/tree/master)):
 
+```
 ├── Makefile             <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md            <- The top-level README for developers using this project.
 ├── data
@@ -52,4 +53,4 @@ The project follows this structure (as declared by the [MLOps DTU course 02476](
 │   └── predict_model.py <- script for predicting from a model
 │
 └── LICENSE              <- Open-source license if one is chosen
-
+```
