@@ -6,13 +6,9 @@ import time
 import matplotlib.pyplot as plt
 import pandas as pd
 import torch
-from bs4 import BeautifulSoup
 from datasets import Dataset, load_dataset
-from peft import (LoraConfig, PeftModel, get_peft_model,
-                  prepare_model_for_kbit_training)
-from transformers import (AutoModelForCausalLM, AutoTokenizer,
-                          BitsAndBytesConfig, EarlyStoppingCallback,
-                          TrainingArguments, pipeline)
+from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, EarlyStoppingCallback, TrainingArguments, pipeline
 from trl import SFTTrainer
 
 
@@ -109,64 +105,6 @@ def load_data():
     return dataset
 
 
-def load_data_to_fine_tune():
-    """Load the dataset and filter for Python language."""
-    dtypes_questions = {"Id": "int32", "Score": "int16", "Title": "str", "Body": "str"}
-    df_questions = pd.read_csv(
-        "Questions.csv",
-        usecols=["Id", "Score", "Title", "Body"],
-        encoding="ISO-8859-1",
-        dtype=dtypes_questions,
-    )
-
-    dtypes_answers = {
-        "Id": "int32",
-        "ParentId": "int32",
-        "Score": "int16",
-        "Body": "str",
-    }
-    df_answers = pd.read_csv(
-        "Answers.csv",
-        usecols=["Id", "ParentId", "Score", "Body"],
-        encoding="ISO-8859-1",
-        dtype=dtypes_answers,
-    )
-
-    merged = pd.merge(
-        df_questions, df_answers, left_on="Id", right_on="ParentId", how="inner"
-    )
-    # Sort by score of the answer in descending order and drop duplicates based on question ID
-    merged = merged.sort_values(by="Score_y", ascending=False).drop_duplicates(
-        subset="Id_x", keep="first"
-    )
-
-    # Remove HTML tags using BeautifulSoup
-    merged["Body_x"] = merged["Body_x"].apply(
-        lambda x: BeautifulSoup(x, "lxml").get_text()
-    )
-    merged["Body_y"] = merged["Body_y"].apply(
-        lambda x: BeautifulSoup(x, "lxml").get_text()
-    )
-
-    merged["combined_question"] = merged["Title"] + ": " + merged["Body_x"]
-
-    # Rename and select the desired columns
-    final_df = merged[["Score_x", "Score_y", "combined_question", "Body_y"]]
-    final_df.columns = ["score_question", "score_answer", "question", "answer"]
-
-    final_df = final_df[
-        (final_df["score_question"] >= 0) & (final_df["score_answer"] >= 0)
-    ]
-
-    # Contains code that resembles python code
-    final_df = final_df[
-        final_df["question"].apply(contains_code)
-        | final_df["answer"].apply(contains_code)
-    ]
-
-    return final_df
-
-
 def contains_code(text):
     python_keywords = [
         "def",
@@ -218,8 +156,7 @@ def transform_dataset_format(df):
     def transform(row):
         user_text = row["question"]
         assistant_text = row["answer"]
-        return f"<s>[INST] <</SYS>>\n{Config.SYSTEM_MESSAGE.strip()}\n<</SYS>>\n\n" \
-               f"{user_text} [/INST] {assistant_text} </s>"
+        return f"<s>[INST] <</SYS>>\n{Config.SYSTEM_MESSAGE.strip()}\n<</SYS>>\n\n" f"{user_text} [/INST] {assistant_text} </s>"
 
     transformed_df = df.apply(transform, axis=1).to_frame(name="text")
     transformed_df.reset_index(drop=True, inplace=True)
@@ -237,9 +174,7 @@ def initialize_model_and_tokenizer():
         bnb_4bit_compute_dtype=compute_dtype,
         bnb_4bit_use_double_quant=Config.USE_NESTED_QUANT,
     )
-    model = AutoModelForCausalLM.from_pretrained(
-        Config.MODEL_NAME, quantization_config=bnb_config, device_map=Config.DEVICE_MAP
-    )
+    model = AutoModelForCausalLM.from_pretrained(Config.MODEL_NAME, quantization_config=bnb_config, device_map=Config.DEVICE_MAP)
     model.config.use_cache = False
     model.config.pretraining_tp = 1
     tokenizer = AutoTokenizer.from_pretrained(Config.MODEL_NAME, trust_remote_code=True)
@@ -324,14 +259,9 @@ def fine_tune_and_save_model(model, tokenizer, train_dataset, val_dataset):
 
 def generate_code_from_prompt(model, tokenizer):
     """Generate code based on the provided system message using a pre-trained model and tokenizer."""
-    prompt = (
-        f"[INST] <<SYS>>\n{Config.SYSTEM_MESSAGE}\n<</SYS>>\n\n"
-        f"Write a function that reverses a linked list. [/INST]"
-    )
+    prompt = f"[INST] <<SYS>>\n{Config.SYSTEM_MESSAGE}\n<</SYS>>\n\n" f"Write a function that reverses a linked list. [/INST]"
 
-    pipe = pipeline(
-        task="text-generation", model=model, tokenizer=tokenizer, max_length=500
-    )
+    pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
 
     result = pipe(prompt)
     generated_text = result[0]["generated_text"]
@@ -384,11 +314,7 @@ def print_trainable_parameters(model):
         all_param += param.numel()
         if param.requires_grad:
             trainable_params += param.numel()
-    print(
-        f"trainable params: {trainable_params} || "
-        f"all params: {all_param} || "
-        f"trainable%: {100 * trainable_params / all_param}"
-    )
+    print(f"trainable params: {trainable_params} || " f"all params: {all_param} || " f"trainable%: {100 * trainable_params / all_param}")
 
 
 def push_model_to_hub():
