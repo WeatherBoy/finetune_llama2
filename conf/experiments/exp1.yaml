@@ -1,0 +1,41 @@
+system_parameters:
+  model_name: "meta-llama/Llama-2-7b-hf"
+  output_dir: "./results"
+  NEW_DATASET_NAME_COMPLETE: "luisroque/instruct-python-500k"
+  NEW_DATASET_NAME: "luisroque/instruct-python-llama2-20k"
+  NEW_DATASET_NAME_LOCAL: "instruct-python-500k.pkl"
+  NEW_MODEL_PATH: "./Llama-2-7b-minipython-instruct"
+  NEW_MODEL_PATH_MERGE: "./Llama-2-7b-minipython-instruct-merge"
+  NEW_MODEL_NAME: "Llama-2-7b-minipython-instruct"
+  HF_HUB_MODEL_NAME: "luisroque/Llama-2-7b-minipython-instruct"
+  SYSTEM_MESSAGE: "Given a puzzle-like code question, provide a well-reasoned, step-by-step Python solution."
+
+hyperparameters:
+  NUM_EPOCHS: 1
+  BATCH_SIZE: 2
+  GRAD_ACC_STEPS: 1
+  SAVE_STEPS: 50
+  LOG_STEPS: 5
+  LEARNING_RATE: 2e-4
+  WEIGHT_DECAY: 0.001
+  MAX_GRAD_NORM: 0.3
+  SCHEDULER_TYPE: "cosine"
+  PER_DEVICE_TRAIN_BATCH_SIZE: 4
+  PER_DEVICE_EVAL_BATCH_SIZE: 4
+  OPTIM: "paged_adamw_32bit"
+  FP16: False
+  BF16: False
+  MAX_STEPS: 1000
+  WARMUP_RATIO: 0.03
+  GROUP_BY_LENGTH: 3
+  LORA_ALPHA: 16
+  LORA_DROPOUT: 0.1
+  LORA_R: 64
+  DEVICE_MAP: {"": 0}
+  USE_4BIT: True
+  BNB_4BIT_COMPUTE_DTYPE: "float16"
+  BNB_4BIT_COMPUTE_QUANT_TYPE: "nf4"
+  USE_NESTED_QUANT: False
+
+
+  
