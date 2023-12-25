@@ -1,5 +1,6 @@
 hydra:
-  version_base: 1.1
+  run:
+    dir: "./results/hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}"
 
 system_parameters:
   model_name: "meta-llama/Llama-2-7b-hf"
