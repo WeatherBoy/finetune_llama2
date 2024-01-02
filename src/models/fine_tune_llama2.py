@@ -57,38 +57,6 @@ def load_data():
     return dataset
 
 
-def contains_code(text):
-    python_keywords = [
-        "def",
-        "class",
-        "import",
-        "print",
-        "return",
-        "for",
-        "while",
-        "if",
-        "else",
-        "elif",
-        "try",
-        "except",
-        "lambda",
-        "list",
-        "dict",
-        "set",
-        "str",
-        "=",
-        "{",
-        "}",
-        "(",
-        ")",
-    ]
-
-    for keyword in python_keywords:
-        if keyword in text:
-            return True
-    return False
-
-
 def store_dataset_locally(dataset):
     """Store the dataset locally using pickle."""
     with open(wandb.config.NEW_DATASET_NAME_LOCAL, "wb") as file:
