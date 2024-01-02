@@ -3,51 +3,25 @@ import os
 import pickle
 import time
 
+import hydra
 import matplotlib.pyplot as plt
 import pandas as pd
 import torch
+import wandb
 from datasets import Dataset, load_dataset
+from omegaconf import DictConfig, OmegaConf
 from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, EarlyStoppingCallback, TrainingArguments, pipeline
 from trl import SFTTrainer
 
 
-class Config:
-    MODEL_NAME = "meta-llama/Llama-2-7b-hf"
-    OUTPUT_DIR = "./results"
-    NEW_DATASET_NAME_COMPLETE = "luisroque/instruct-python-500k"
-    NEW_DATASET_NAME = "luisroque/instruct-python-llama2-20k"
-    NEW_DATASET_NAME_LOCAL = "instruct-python-500k.pkl"
-    NEW_MODEL_PATH = "./Llama-2-7b-minipython-instruct"
-    NEW_MODEL_PATH_MERGE = "./Llama-2-7b-minipython-instruct-merge"
-    NEW_MODEL_NAME = "Llama-2-7b-minipython-instruct"
-    HF_HUB_MODEL_NAME = "luisroque/Llama-2-7b-minipython-instruct"
-    SYSTEM_MESSAGE = "Given a puzzle-like code question, provide a well-reasoned, step-by-step Python solution."
-    NUM_EPOCHS = 1
-    BATCH_SIZE = 2
-    GRAD_ACC_STEPS = 1
-    SAVE_STEPS = 50
-    LOG_STEPS = 5
-    LEARNING_RATE = 2e-4
-    WEIGHT_DECAY = 0.001
-    MAX_GRAD_NORM = 0.3
-    SCHEDULER_TYPE = "cosine"
-    PER_DEVICE_TRAIN_BATCH_SIZE = 4
-    PER_DEVICE_EVAL_BATCH_SIZE = 4
-    OPTIM = "paged_adamw_32bit"
-    FP16 = False
-    BF16 = False
-    MAX_STEPS = 1000
-    WARMUP_RATIO = 0.03
-    GROUP_BY_LENGTH = 3
-    LORA_ALPHA = 16
-    LORA_DROPOUT = 0.1
-    LORA_R = 64
-    DEVICE_MAP = {"": 0}
-    USE_4BIT = True
-    BNB_4BIT_COMPUTE_DTYPE = "float16"
-    BNB_4BIT_COMPUTE_QUANT_TYPE = "nf4"
-    USE_NESTED_QUANT = False
+@hydra.main(config_path="../conf", config_name="config", version_base="1.2")
+def main(cfg: DictConfig):
+    temp_config = OmegaConf.to_container(cfg, resolve=True, throw_on_missing=True)
+
+    config = temp_config["hyperparameters"] | temp_config["system_parameters"]  # <-- the "|" operator merges the two dictionaries
+
+    wandb.init(project="test 1", config=config)
 
 
 def time_decorator(func):
@@ -77,31 +51,9 @@ def memory_decorator(func):
     return wrapper
 
 
-def visualize_and_save(exec_time, memory_usage):
-    fig, ax1 = plt.subplots(figsize=(10, 6))
-
-    ax1.set_xlabel("Run")
-    ax1.set_ylabel("Execution Time (seconds)", color="tab:blue")
-    ax1.plot(exec_time, color="tab:blue", marker="o", label="Execution Time")
-    ax1.tick_params(axis="y", labelcolor="tab:blue")
-
-    ax2 = ax1.twinx()
-
-    ax2.set_ylabel("Memory Consumption (GB)", color="tab:red")
-    ax2.plot(memory_usage, color="tab:red", marker="o", label="Memory Consumption")
-    ax2.tick_params(axis="y", labelcolor="tab:red")
-
-    fig.tight_layout()
-    plt.title("Execution Time and Memory Consumption Over a Run")
-
-    os.makedirs("plots", exist_ok=True)
-    plt.savefig("plots/exec_time_and_memory.png")
-    plt.close()
-
-
 def load_data():
     """Load the new dataset."""
-    dataset = load_dataset(Config.NEW_DATASET_NAME)
+    dataset = load_dataset(wandb.config.NEW_DATASET_NAME)
     return dataset
 
 
@@ -139,13 +91,13 @@ def contains_code(text):
 
 def store_dataset_locally(dataset):
     """Store the dataset locally using pickle."""
-    with open(Config.NEW_DATASET_NAME_LOCAL, "wb") as file:
+    with open(wandb.config.NEW_DATASET_NAME_LOCAL, "wb") as file:
         pickle.dump(dataset, file)
 
 
 def load_dataset_from_local():
     """Load the dataset from a local directory using pickle."""
-    with open(Config.NEW_DATASET_NAME_LOCAL, "rb") as file:
+    with open(wandb.config.NEW_DATASET_NAME_LOCAL, "rb") as file:
         dataset = pickle.load(file)
     return dataset
 
@@ -156,7 +108,7 @@ def transform_dataset_format(df):
     def transform(row):
         user_text = row["question"]
         assistant_text = row["answer"]
-        return f"<s>[INST] <</SYS>>\n{Config.SYSTEM_MESSAGE.strip()}\n<</SYS>>\n\n" f"{user_text} [/INST] {assistant_text} </s>"
+        return f"<s>[INST] <</SYS>>\n{wandb.config.SYSTEM_MESSAGE.strip()}\n<</SYS>>\n\n" f"{user_text} [/INST] {assistant_text} </s>"
 
     transformed_df = df.apply(transform, axis=1).to_frame(name="text")
     transformed_df.reset_index(drop=True, inplace=True)
@@ -167,17 +119,17 @@ def transform_dataset_format(df):
 def initialize_model_and_tokenizer():
     """Initialize the model and tokenizer."""
 
-    compute_dtype = getattr(torch, Config.BNB_4BIT_COMPUTE_DTYPE)
+    compute_dtype = getattr(torch, wandb.config.BNB_4BIT_COMPUTE_DTYPE)
     bnb_config = BitsAndBytesConfig(
-        load_in_4bit=Config.USE_4BIT,
-        bnb_4bit_quant_type=Config.BNB_4BIT_COMPUTE_QUANT_TYPE,
+        load_in_4bit=wandb.config.USE_4BIT,
+        bnb_4bit_quant_type=wandb.config.BNB_4BIT_COMPUTE_QUANT_TYPE,
         bnb_4bit_compute_dtype=compute_dtype,
-        bnb_4bit_use_double_quant=Config.USE_NESTED_QUANT,
+        bnb_4bit_use_double_quant=wandb.config.USE_NESTED_QUANT,
     )
-    model = AutoModelForCausalLM.from_pretrained(Config.MODEL_NAME, quantization_config=bnb_config, device_map=Config.DEVICE_MAP)
+    model = AutoModelForCausalLM.from_pretrained(wandb.config.MODEL_NAME, quantization_config=bnb_config, device_map=wandb.config.DEVICE_MAP)
     model.config.use_cache = False
     model.config.pretraining_tp = 1
-    tokenizer = AutoTokenizer.from_pretrained(Config.MODEL_NAME, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(wandb.config.MODEL_NAME, trust_remote_code=True)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
 
@@ -187,22 +139,22 @@ def initialize_model_and_tokenizer():
 def configure_training_args():
     """Configure training arguments."""
     return TrainingArguments(
-        output_dir=Config.OUTPUT_DIR,
-        num_train_epochs=Config.NUM_EPOCHS,
-        per_device_train_batch_size=Config.PER_DEVICE_TRAIN_BATCH_SIZE,
-        gradient_accumulation_steps=Config.GRAD_ACC_STEPS,
-        optim=Config.OPTIM,
-        save_steps=Config.SAVE_STEPS,
-        logging_steps=Config.LOG_STEPS,
-        learning_rate=Config.LEARNING_RATE,
-        weight_decay=Config.WEIGHT_DECAY,
-        fp16=Config.FP16,
-        bf16=Config.BF16,
-        max_grad_norm=Config.MAX_GRAD_NORM,
-        max_steps=Config.MAX_STEPS,
-        warmup_ratio=Config.WARMUP_RATIO,
-        group_by_length=Config.GROUP_BY_LENGTH,
-        lr_scheduler_type=Config.SCHEDULER_TYPE,
+        output_dir=wandb.config.OUTPUT_DIR,
+        num_train_epochs=wandb.config.NUM_EPOCHS,
+        per_device_train_batch_size=wandb.config.PER_DEVICE_TRAIN_BATCH_SIZE,
+        gradient_accumulation_steps=wandb.config.GRAD_ACC_STEPS,
+        optim=wandb.config.OPTIM,
+        save_steps=wandb.config.SAVE_STEPS,
+        logging_steps=wandb.config.LOG_STEPS,
+        learning_rate=wandb.config.LEARNING_RATE,
+        weight_decay=wandb.config.WEIGHT_DECAY,
+        fp16=wandb.config.FP16,
+        bf16=wandb.config.BF16,
+        max_grad_norm=wandb.config.MAX_GRAD_NORM,
+        max_steps=wandb.config.MAX_STEPS,
+        warmup_ratio=wandb.config.WARMUP_RATIO,
+        group_by_length=wandb.config.GROUP_BY_LENGTH,
+        lr_scheduler_type=wandb.config.SCHEDULER_TYPE,
         report_to="all",
         evaluation_strategy="steps",
         eval_steps=50,
@@ -216,9 +168,9 @@ def fine_tune_and_save_model(model, tokenizer, train_dataset, val_dataset):
     """Fine-tune the model and save it."""
 
     peft_config = LoraConfig(
-        lora_alpha=Config.LORA_ALPHA,
-        lora_dropout=Config.LORA_DROPOUT,
-        r=Config.LORA_R,
+        lora_alpha=wandb.config.LORA_ALPHA,
+        lora_dropout=wandb.config.LORA_DROPOUT,
+        r=wandb.config.LORA_R,
         bias="none",
         task_type="CAUSAL_LM",
     )
@@ -245,11 +197,11 @@ def fine_tune_and_save_model(model, tokenizer, train_dataset, val_dataset):
     )
     trainer.train()
 
-    if not os.path.exists(Config.NEW_MODEL_PATH):
-        os.makedirs(Config.NEW_MODEL_PATH)
+    if not os.path.exists(wandb.config.NEW_MODEL_PATH):
+        os.makedirs(wandb.config.NEW_MODEL_PATH)
 
-    trainer.model.save_pretrained(Config.NEW_MODEL_PATH)
-    tokenizer.save_pretrained(Config.NEW_MODEL_PATH)
+    trainer.model.save_pretrained(wandb.config.NEW_MODEL_PATH)
+    tokenizer.save_pretrained(wandb.config.NEW_MODEL_PATH)
 
     del model
     torch.cuda.empty_cache()
@@ -259,7 +211,7 @@ def fine_tune_and_save_model(model, tokenizer, train_dataset, val_dataset):
 
 def generate_code_from_prompt(model, tokenizer):
     """Generate code based on the provided system message using a pre-trained model and tokenizer."""
-    prompt = f"[INST] <<SYS>>\n{Config.SYSTEM_MESSAGE}\n<</SYS>>\n\n" f"Write a function that reverses a linked list. [/INST]"
+    prompt = f"[INST] <<SYS>>\n{wandb.config.SYSTEM_MESSAGE}\n<</SYS>>\n\n" f"Write a function that reverses a linked list. [/INST]"
 
     pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
 
@@ -272,25 +224,25 @@ def generate_code_from_prompt(model, tokenizer):
 def merge_and_save_weights():
     """Merges the weights of a given model and saves the merged weights to a specified directory."""
 
-    if not os.path.exists(Config.NEW_MODEL_PATH_MERGE):
-        os.makedirs(Config.NEW_MODEL_PATH_MERGE)
+    if not os.path.exists(wandb.config.NEW_MODEL_PATH_MERGE):
+        os.makedirs(wandb.config.NEW_MODEL_PATH_MERGE)
 
     base_model = AutoModelForCausalLM.from_pretrained(
-        Config.MODEL_NAME,
+        wandb.config.MODEL_NAME,
         low_cpu_mem_usage=True,
         return_dict=True,
         torch_dtype=torch.float16,
-        device_map=Config.DEVICE_MAP,
+        device_map=wandb.config.DEVICE_MAP,
     )
-    model = PeftModel.from_pretrained(base_model, Config.NEW_MODEL_NAME)
+    model = PeftModel.from_pretrained(base_model, wandb.config.NEW_MODEL_NAME)
     model = model.merge_and_unload()
 
-    tokenizer = AutoTokenizer.from_pretrained(Config.MODEL_NAME, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(wandb.config.MODEL_NAME, trust_remote_code=True)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
 
-    model.save_pretrained(Config.NEW_MODEL_PATH)
-    tokenizer.save_pretrained(Config.NEW_MODEL_PATH)
+    model.save_pretrained(wandb.config.NEW_MODEL_PATH)
+    tokenizer.save_pretrained(wandb.config.NEW_MODEL_PATH)
 
 
 def publish_to_hugging_face(df, dataset_name, top=None):
@@ -319,8 +271,8 @@ def print_trainable_parameters(model):
 
 def push_model_to_hub():
     """Push the fine-tuned model and tokenizer to the Hugging Face Hub."""
-    model = AutoModelForCausalLM.from_pretrained(Config.NEW_MODEL_PATH)
-    tokenizer = AutoTokenizer.from_pretrained(Config.NEW_MODEL_PATH)
+    model = AutoModelForCausalLM.from_pretrained(wandb.config.NEW_MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(wandb.config.NEW_MODEL_PATH)
 
-    model.push_to_hub(Config.HF_HUB_MODEL_NAME, use_temp_dir=False)
-    tokenizer.push_to_hub(Config.HF_HUB_MODEL_NAME, use_temp_dir=False)
+    model.push_to_hub(wandb.config.HF_HUB_MODEL_NAME, use_temp_dir=False)
+    tokenizer.push_to_hub(wandb.config.HF_HUB_MODEL_NAME, use_temp_dir=False)
