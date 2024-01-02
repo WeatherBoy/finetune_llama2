@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def visualize_and_save(exec_time, memory_usage):
+def visualise_and_save(exec_time, memory_usage):
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
     ax1.set_xlabel("Run")
