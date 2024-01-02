@@ -177,11 +177,15 @@ def fine_tune_and_save_model(model, tokenizer, train_dataset, val_dataset):
     return None, {}
 
 
-def generate_code_from_prompt(model, tokenizer):
-    """Generate code based on the provided system message using a pre-trained model and tokenizer."""
+def generate_code_from_prompt(model, tokenizer, max_length: int = 500):
+    """
+    NOTE: Maybe it was unwise to be able to specify the max_length of the generated text, since in fine_tune_and_save_model() we specify the max_seq_length to be 512.
+
+    Generate code based on the provided system message using a pre-trained model and tokenizer.
+    """
     prompt = f"[INST] <<SYS>>\n{wandb.config.SYSTEM_MESSAGE}\n<</SYS>>\n\n" f"Write a function that reverses a linked list. [/INST]"
 
-    pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
+    pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=max_length)
 
     result = pipe(prompt)
     generated_text = result[0]["generated_text"]
