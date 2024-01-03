@@ -2,6 +2,7 @@ import pickle
 
 import wandb
 from datasets import load_dataset
+from load_data_to_finetune import load_data_to_fine_tune
 
 
 def load_data():
