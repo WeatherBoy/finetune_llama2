@@ -181,19 +181,6 @@ def merge_and_save_weights():
     tokenizer.save_pretrained(wandb.config.NEW_MODEL_PATH)
 
 
-def publish_to_hugging_face(df, dataset_name, top=None):
-    """Publish the transformed dataframe to Hugging Face datasets."""
-    dataset = Dataset.from_pandas(df)
-
-    if top is not None:
-        dataset = dataset.select(range(top))
-        splits = dataset.train_test_split(test_size=1000, shuffle=True)
-    else:
-        splits = dataset
-
-    splits.push_to_hub(dataset_name)
-
-
 def print_trainable_parameters(model) -> None:
     """
     Logs the number of trainable parameters in the model.
@@ -207,12 +194,3 @@ def print_trainable_parameters(model) -> None:
 
     trainables = 100 * trainable_params / all_param
     wandb.log({"trainable parameters": f"trainable params: {trainable_params} || " f"all params: {all_param} || " f"trainable%: {trainables}"})
-
-
-def push_model_to_hub():
-    """Push the fine-tuned model and tokenizer to the Hugging Face Hub."""
-    model = AutoModelForCausalLM.from_pretrained(wandb.config.NEW_MODEL_PATH)
-    tokenizer = AutoTokenizer.from_pretrained(wandb.config.NEW_MODEL_PATH)
-
-    model.push_to_hub(wandb.config.HF_HUB_MODEL_NAME, use_temp_dir=False)
-    tokenizer.push_to_hub(wandb.config.HF_HUB_MODEL_NAME, use_temp_dir=False)

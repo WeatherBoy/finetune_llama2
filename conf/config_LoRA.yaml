@@ -5,13 +5,11 @@ hydra:
 system_parameters:
   MODEL_NAME: "meta-llama/Llama-2-7b-hf"
   OUTPUT_DIR: "../results"
-  NEW_DATASET_NAME_COMPLETE: "luisroque/instruct-python-500k"
   NEW_DATASET_NAME: "luisroque/instruct-python-llama2-20k"
   NEW_DATASET_NAME_LOCAL: "instruct-python-500k.pkl"
   NEW_MODEL_PATH: "../models/Llama-2-7b-mini-eldercare-domain"
   NEW_MODEL_PATH_MERGE: "../models/Llama-2-7b-mini-eldercare-domain-merge"
   NEW_MODEL_NAME: "Llama-2-7b-mini-eldercare-domain"
-  HF_HUB_MODEL_NAME: "luisroque/Llama-2-7b-minipython-instruct"
   SYSTEM_MESSAGE: "Given a puzzle-like code question, provide a well-reasoned, step-by-step Python solution."
 
 hyperparameters:
