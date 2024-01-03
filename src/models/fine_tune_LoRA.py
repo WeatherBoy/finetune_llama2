@@ -186,11 +186,11 @@ def log_trainable_parameters(model) -> None:
     Logs the number of trainable parameters in the model.
     """
     trainable_params = 0
-    all_param = 0
+    all_params = 0
     for _, param in model.named_parameters():
         all_param += param.numel()
         if param.requires_grad:
             trainable_params += param.numel()
 
-    trainables = 100 * trainable_params / all_param
-    wandb.log({"trainable parameters": f"trainable params: {trainable_params} || " f"all params: {all_param} || " f"trainable%: {trainables}"})
+    trainables = 100 * trainable_params / all_params
+    wandb.log({"trainable parameters": f"trainable params: {trainable_params} || " f"all params: {all_params} || " f"trainable%: {trainables}"})
