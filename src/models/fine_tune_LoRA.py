@@ -181,7 +181,7 @@ def merge_and_save_weights():
     tokenizer.save_pretrained(wandb.config.NEW_MODEL_PATH)
 
 
-def print_trainable_parameters(model) -> None:
+def log_trainable_parameters(model) -> None:
     """
     Logs the number of trainable parameters in the model.
     """
