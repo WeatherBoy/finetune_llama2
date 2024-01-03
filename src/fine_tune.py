@@ -1,5 +1,5 @@
-from models.fine_tune_llama2 import fine_tune_and_save_model, initialize_model_and_tokenizer, load_data
-from visualisation.visualise_llama2 import visualize_and_save
+from models.fine_tune_LoRA import fine_tune_and_save_model, initialize_model_and_tokenizer, load_data
+from visualisation.visualise_LoRA import visualize_and_save
 
 
 def fine_tune():
