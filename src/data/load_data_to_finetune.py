@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 def load_data_to_fine_tune():
     """Load the dataset and filter for Python language."""
     dtypes_questions = {"Id": "int32", "Score": "int16", "Title": "str", "Body": "str"}
