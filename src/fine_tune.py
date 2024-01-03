@@ -1,11 +1,5 @@
-import hydra
-from omegaconf import OmegaConf
-from models.fine_tune_llama2 import fine_tune_and_save_model, initialize_model_and_tokenizer, load_data, visualize_and_save
-
-
-@hydra.main(config_path="../conf", config_name="config", version_base="1.2")
-def main(cfg):
-    print(OmegaConf.to_yaml(cfg))
+from models.fine_tune_llama2 import fine_tune_and_save_model, initialize_model_and_tokenizer, load_data
+from visualisation.visualise_llama2 import visualize_and_save
 
 
 def fine_tune():
@@ -19,4 +13,4 @@ def fine_tune():
 
 if __name__ == "__main__":
     print("Running fine_tune.py")
-    main()
+    fine_tune()
