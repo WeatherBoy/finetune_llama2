@@ -15,7 +15,7 @@ from trl import SFTTrainer
 
 
 @hydra.main(config_path="../conf", config_name="config", version_base="1.2")
-def main(cfg: DictConfig):
+def load_configs(cfg: DictConfig):
     temp_config = OmegaConf.to_container(cfg, resolve=True, throw_on_missing=True)
 
     config = temp_config["hyperparameters"] | temp_config["system_parameters"]  # <-- the "|" operator merges the two dictionaries
