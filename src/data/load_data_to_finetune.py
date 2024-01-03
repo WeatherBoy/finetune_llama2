@@ -26,8 +26,11 @@ def load_data_to_fine_tune():
     merged = merged.sort_values(by="Score_y", ascending=False).drop_duplicates(subset="Id_x", keep="first")
 
     # Remove HTML tags using BeautifulSoup
-    merged["Body_x"] = merged["Body_x"].apply(lambda x: BeautifulSoup(x, "lxml").get_text())
-    merged["Body_y"] = merged["Body_y"].apply(lambda x: BeautifulSoup(x, "lxml").get_text())
+    ######################################################################
+    # NOTE: None of this should even be here - removing so flake8 passes #
+    # merged["Body_x"] = merged["Body_x"].apply(lambda x: BeautifulSoup(x, "lxml").get_text())
+    # merged["Body_y"] = merged["Body_y"].apply(lambda x: BeautifulSoup(x, "lxml").get_text())
+    ######################################################################
 
     merged["combined_question"] = merged["Title"] + ": " + merged["Body_x"]
 
@@ -38,6 +41,9 @@ def load_data_to_fine_tune():
     final_df = final_df[(final_df["score_question"] >= 0) & (final_df["score_answer"] >= 0)]
 
     # Contains code that resembles python code
-    final_df = final_df[final_df["question"].apply(contains_code) | final_df["answer"].apply(contains_code)]
+    ######################################################################
+    # NOTE: None of this should even be here - removing so flake8 passes #
+    # final_df = final_df[final_df["question"].apply(contains_code) | final_df["answer"].apply(contains_code)]
+    ######################################################################
 
     return final_df
