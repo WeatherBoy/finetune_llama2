@@ -30,3 +30,20 @@ Dettmers, T., Pagnoni, A., Holtzman, A., & Zettlemoyer, L. (2023). QLoRA: Effici
 ## MLOps
 ### CookieCutter
 Nikki is the GOAT. When in doubt just look at his [MLOps repository](https://github.com/SkafteNicki/mlops_template/tree/master)!
+
+### Hydra
+If you have loaded your configuration file with **Hydra** then you can print the *configurations* (to check whether it works) as:
+```
+import hydra
+from omegaconf import OmegaConf
+
+@hydra.main(config_path="../conf", config_name="config", version_base="1.2")
+def main(cfg):
+    print(OmegaConf.to_yaml(cfg))
+```
+Just make sure the path and naming conventions are correct.
+
+## Prompt engineering
+### Principled Instructions Are All You Need
+There is this really good [paper](https://arxiv.org/pdf/2312.16171.pdf) on prompt engineering, that details some different "prompt principles", which should significantly enhance the performance given your prompts.
+([Link to HuggingFace](https://huggingface.co/papers/2312.16171)).

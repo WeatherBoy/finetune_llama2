@@ -1,4 +1,6 @@
+**/__pycache__/
 .vscode
 /llama2_venv
 /data
 /models
+**/__pycache__
