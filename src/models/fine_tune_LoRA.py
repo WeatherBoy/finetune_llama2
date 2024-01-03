@@ -194,15 +194,19 @@ def publish_to_hugging_face(df, dataset_name, top=None):
     splits.push_to_hub(dataset_name)
 
 
-def print_trainable_parameters(model):
-    """Prints the number of trainable parameters in the model."""
+def print_trainable_parameters(model) -> None:
+    """
+    Logs the number of trainable parameters in the model.
+    """
     trainable_params = 0
     all_param = 0
     for _, param in model.named_parameters():
         all_param += param.numel()
         if param.requires_grad:
             trainable_params += param.numel()
-    print(f"trainable params: {trainable_params} || " f"all params: {all_param} || " f"trainable%: {100 * trainable_params / all_param}")
+
+    trainables = 100 * trainable_params / all_param
+    wandb.log({"trainable parameters": f"trainable params: {trainable_params} || " f"all params: {all_param} || " f"trainable%: {trainables}"})
 
 
 def push_model_to_hub():
