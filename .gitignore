@@ -2,3 +2,4 @@
 /llama2_venv
 /data
 /models
+**/__pycache__
