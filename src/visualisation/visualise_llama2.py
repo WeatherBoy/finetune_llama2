@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import wandb
 
 
 def visualise_and_save(exec_time, memory_usage):
@@ -18,6 +19,5 @@ def visualise_and_save(exec_time, memory_usage):
     fig.tight_layout()
     plt.title("Execution Time and Memory Consumption Over a Run")
 
-    os.makedirs("plots", exist_ok=True)
-    plt.savefig("plots/exec_time_and_memory.png")
+    wandb.log({"plot_exec_time_and_memory": fig})
     plt.close()
