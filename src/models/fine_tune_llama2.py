@@ -9,11 +9,8 @@ import torch
 import wandb
 from datasets import Dataset, load_dataset
 from omegaconf import DictConfig, OmegaConf
-from peft import (LoraConfig, PeftModel, get_peft_model,
-                  prepare_model_for_kbit_training)
-from transformers import (AutoModelForCausalLM, AutoTokenizer,
-                          BitsAndBytesConfig, EarlyStoppingCallback,
-                          TrainingArguments, pipeline)
+from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, EarlyStoppingCallback, TrainingArguments, pipeline
 from trl import SFTTrainer
 
 
@@ -146,15 +143,13 @@ def fine_tune_and_save_model(model, tokenizer, train_dataset, val_dataset):
     return None, {}
 
 
-def generate_code_from_prompt(model, tokenizer, max_length: int = 500):
+def generate_code_from_prompt(model, tokenizer):
     """
-    NOTE: Maybe it was unwise to be able to specify the max_length of the generated text, since in fine_tune_and_save_model() we specify the max_seq_length to be 512.
-
     Generate code based on the provided system message using a pre-trained model and tokenizer.
     """
     prompt = f"[INST] <<SYS>>\n{wandb.config.SYSTEM_MESSAGE}\n<</SYS>>\n\n" f"Write a function that reverses a linked list. [/INST]"
 
-    pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=max_length)
+    pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
 
     result = pipe(prompt)
     generated_text = result[0]["generated_text"]
