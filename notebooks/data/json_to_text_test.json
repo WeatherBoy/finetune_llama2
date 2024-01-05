@@ -1,0 +1,11 @@
+{
+    "documentationInstruction": "Jeg justerede medicinen for fru Ingrid Johansen, som er 82 år, fordi hun oplevede ubehag i sit højre knæ på grund af gigt. Vi hjalp hende med hendes morgenhygiejne og snakkede om hendes havearbejde, som hun er glad for. Husk at notere, at vi skal holde øje med hendes smerter efter medicinændringen og opmuntre hende til lette øvelser. Jeg informerede også hendes datter om ændringen i medicinering og øvelserne under hendes besøg.",
+    "processedDocumentation": {
+        "patient": "Ingrid Johansen",
+        "age": 82,
+        "observations": "Ubehag i højre knæ på grund af gigt og tilpassede medicinering som følge af ubehagen.",
+        "care_provided": "Hjælp til morgenhygiejne og samtale om havearbejde.",
+        "plan": "Overvåge smerten efter medicinændring, opmuntre til lette øvelser.",
+        "family_interaction": "Informerede datteren om medicinændring og øvelser."
+    }
+}
