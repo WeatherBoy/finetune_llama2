@@ -11,7 +11,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from trl import SFTTrainer
 
 
-@hydra.main(config_path="../conf", config_name="config", version_base="1.2")
+@hydra.main(config_path="../conf", config_name="config_LoRA", version_base="1.2")
 def load_configs(cfg: DictConfig):
     temp_config = OmegaConf.to_container(cfg, resolve=True, throw_on_missing=True)
 
