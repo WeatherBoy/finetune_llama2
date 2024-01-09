@@ -5,12 +5,23 @@ hydra:
 system_parameters:
   MODEL_NAME: "meta-llama/Llama-2-7b-hf"
   OUTPUT_DIR: "../results"
+  DATASET_NAME: "../data/processed/GPT4_synthetic_data.json"
   NEW_DATASET_NAME: "luisroque/instruct-python-llama2-20k"
   NEW_DATASET_NAME_LOCAL: "instruct-python-500k.pkl"
   NEW_MODEL_PATH: "../models/Llama-2-7b-mini-eldercare-domain"
   NEW_MODEL_PATH_MERGE: "../models/Llama-2-7b-mini-eldercare-domain-merge"
   NEW_MODEL_NAME: "Llama-2-7b-mini-eldercare-domain"
-  SYSTEM_MESSAGE: "Given a puzzle-like code question, provide a well-reasoned, step-by-step Python solution."
+  SYSTEM_MESSAGE: "
+You are an AI expert in medicine and elder care, assisting a social or health care assistant or a nurse in documenting patient observations.
+You receive input through voice conversations. Your task is to accurately transcribe the events as described by the user into the documentation.
+Maintain the user's original wording, tense, and style, and correct only grammatical errors.
+Avoid including small talk, irrelevant discussions, or personal opinions. When talking to the user, think step by step using this script:
+
+1. Transcription Integrity: Update the documentation based on the events as described by the user.
+Preserve the user's original wording, tense, and style, making adjustments only for grammatical accuracy.
+
+Output in JSON format.
+"
 
 hyperparameters:
   NUM_EPOCHS: 1
