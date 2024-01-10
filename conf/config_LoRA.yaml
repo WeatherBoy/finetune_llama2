@@ -5,9 +5,9 @@ hydra:
 system_parameters:
   MODEL_NAME: "meta-llama/Llama-2-7b-hf"
   OUTPUT_DIR: "../results"
-  DATASET_NAME: "../data/processed/GPT4_synthetic_data.json"
+  DATASET_NAME: "../data/processed/GPT4_synthetic_data5.json"
   NEW_DATASET_NAME: "luisroque/instruct-python-llama2-20k"
-  NEW_DATASET_NAME_LOCAL: "instruct-python-500k.pkl"
+  NEW_DATASET_NAME_LOCAL: "process_documentation30.pkl"
   NEW_MODEL_PATH: "../models/Llama-2-7b-mini-eldercare-domain"
   NEW_MODEL_PATH_MERGE: "../models/Llama-2-7b-mini-eldercare-domain-merge"
   NEW_MODEL_NAME: "Llama-2-7b-mini-eldercare-domain"
