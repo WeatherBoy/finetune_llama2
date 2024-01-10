@@ -1,0 +1,56 @@
+[
+    {
+        "documentationInstruction": "Ingrid Johansen, 82 år, giver udtryk for smerte lokaliseret i højre knæ grundet gigt. VAS 5. Smertestillende efter ordinering. Nedre hygiejne udført. Vi snakkede om hendes havearbejde. Opfølgning på smerter efter én time. Borgeren bør opfordres til at udføre lette øvelser dagligt som angivet ved fysioterapeut. Datter informeret om borgers tilstand.",
+        "processedDocumentation": {
+            "patient": "Ingrid Johansen",
+            "age": 82,
+            "observations": "Ubehag i højre knæ formodligt grundet gigt.",
+            "care_provided": "Nedre hygiejne udført. Smertestillende givet efter ordinering.",
+            "plan": "Opfølgning på smerter efter én time, opmuntre til lette øvelser.",
+            "family_interaction": "Datter informeret om borgers tilstand.",
+            "scoring": {
+                "VAS": "5"
+            }
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Erik Larsen, 75 år, BT måles, 160 over 90, atypisk højt. Borger giver udtryk for stress, grundet privat anliggende. Blodtryksmedicin givet som ordineret. Vi har forsøgt at afskærme borgerens værelse. Måling af BT hver fjerde time. Psykolog hjælp tilbud, borger samtykker. Ved næste teammøde vil der informeres om forhøjet blodtryk og at borgeren skal afskæermes.",
+        "processedDocumentation": {
+            "patient": "Erik Larsen",
+            "age": 75,
+            "observations": "Forhøjet BT (160/90 mmHg), giver udtryk for stress.",
+            "care_provided": "Blodtryksmedicin givet som ordineret. Borgerens værelse forsøgt afskærmet.",
+            "plan": "BT kontrol hæves til hver fjerde time. Psykolog kontaktes.",
+            "team_discussion": "Gennemgang af målte BT værdier i næste teammøde og informering om afskærmning.",
+            "scoring": {
+                "Blood pressure": "160/90 mmHg"
+            }
+        }
+    },
+    {
+        "documentationInstruction": "Fru Anna Nielsen, 79 år, faldt i egen lejlighed usikkert hvor længe, antages at have ligget i omkring én time. Ingen tegn på brud. Ikke orienteret i tid, sted og egen data. Der er udført undersøgelse af lejlighedens sikkerhed. Medicin gennemgået, ingen mulig årsag til svimmelhed fundet. Der planlægges at indføre yderligere sikkerhedsforanstaltninger, som grebsstænger i hendes badeværelse. Skal overvåges for yderligere desorientering. Patienten GCS scorer på 13. Måles igen om én time. Væskeskema indføres, allerede indtaget 150 ml. Faldet skal diskuteres på teammøde med henblik på faldforebyggelse og reaktion.",
+        "processedDocumentation": {
+            "patient": "Anna Nielsen",
+            "age": 79,
+            "observations": "Mindre fald i egen lejlighed, virkede desorienteret. Antages at have ligget i omkring én time.",
+            "care_provided": "Fuldstændig vurdering post-fald, sikret lejligheden. Udelukkede svimmelhed som bivirkning ved medicineringen.",
+            "plan": "Implementere yderligere sikkerhedsforanstaltninger, såsom grebsstænger i badeværelse, monitoreres for desorientering. GCS måling indføres. Væskeskema indføres.",
+            "team_discussion": "Diskuterede faldforebyggelse i teammødet.",
+            "scoring": {
+                "Glasgow Coma Scale": "13",
+                "Fluid intake": "150 ml"
+            }
+        }
+    },
+    {
+        "documentationInstruction": "Lars Svendsen, 80 år, skærpet overvågning af diabetes anbefales. Blodsukker ses ustabilt. Koordiner med diætisten for måltidsjustering, og kontrol af blodsukker seks gange i døgnet. Konsultation med endokrinolog planlægges med henblik på medicinjustering. Teamet bør informeres omkirng diabetesstyring ved næste tværfaglige møde.",
+        "processedDocumentation": {
+            "patient": "Lars Svendsen",
+            "age": 80,
+            "observations": "Ustabile blodsukkerniveauer ved diabetes påkræver tættere overvågning.",
+            "care_provided": "Koordineret med diætist",
+            "plan": "Blodsukkerkontrol hæves til seks gange i døgnet. Konsultation med endokrinolog for medicinjustering.",
+            "team_discussion": "Team skal opdateres om ændringer i diabetesstyring."
+        }
+    }
+]
