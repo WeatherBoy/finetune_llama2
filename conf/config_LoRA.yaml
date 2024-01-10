@@ -5,12 +5,14 @@ hydra:
 system_parameters:
   MODEL_NAME: "meta-llama/Llama-2-7b-hf"
   OUTPUT_DIR: "../results"
-  DATASET_NAME: "../data/processed/GPT4_synthetic_data5.json"
-  NEW_DATASET_NAME: "luisroque/instruct-python-llama2-20k"
+  DATASET_NAME: "../data/raw/GPT4_synthetic_data.json"
   NEW_DATASET_NAME_LOCAL: "process_documentation30.pkl"
   NEW_MODEL_PATH: "../models/Llama-2-7b-mini-eldercare-domain"
   NEW_MODEL_PATH_MERGE: "../models/Llama-2-7b-mini-eldercare-domain-merge"
   NEW_MODEL_NAME: "Llama-2-7b-mini-eldercare-domain"
+  X_COLUMN: "documentationInstruction"
+  Y_COLUMN: "processedDocumentation"
+
   SYSTEM_MESSAGE: "
 You are an AI expert in medicine and elder care, assisting a social or health care assistant or a nurse in documenting patient observations.
 You receive input through voice conversations. Your task is to accurately transcribe the events as described by the user into the documentation.
