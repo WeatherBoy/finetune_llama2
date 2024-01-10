@@ -1,6 +1,8 @@
 **/__pycache__/
 .vscode
 /llama2_venv
-/data
+/data/raw/Answers.csv
+/data/raw/Questions.csv
+/data/kaggle_test
 /models
 **/__pycache__
