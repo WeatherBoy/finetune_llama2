@@ -65,7 +65,3 @@ if __name__ == "__main__":
     transformed_dataset = transform_dataset_format(dataset)
     store_dataset_locally(dataset=dataset, filename=dataset_name_local)
     dataset = load_dataset_from_local(filename=dataset_name_local)
-
-    for i in range(5):
-        print(f"** Documentation Instruction ** \n{dataset.loc[i, 'documentationInstruction']}")
-        print(f"** Processed Documentation ** \n{dataset.loc[i, 'processedDocumentation']}\n\n")
