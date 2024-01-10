@@ -1,56 +1,54 @@
 import pickle
 
+import hydra
 import wandb
 import pandas as pd
-from datasets import load_dataset
-from load_data_to_finetune import load_data_to_fine_tune
+from omegaconf import DictConfig, OmegaConf
 
 
-def load_json_to_dataframe():
+@hydra.main(config_path="../../conf", config_name="config_LoRA", version_base="1.2")
+def load_configs(cfg: DictConfig):
+    temp_config = OmegaConf.to_container(cfg, resolve=True, throw_on_missing=True)
+
+    system_config = temp_config["system_parameters"]  # <-- the "|" operator merges the two dictionaries
+
+    wandb.init(project="test 1", config=system_config)
+
+
+def load_json_to_dataframe(filename: str | None = None) -> pd.DataFrame:
     """Load the json file into a dataframe."""
-    df = pd.read_json("../../data/raw/GPT4_synthetic_data5.json")
-
-    def transform(row):
-        user_text = row["documentationInstruction"]
-        assistant_text = row["processedDocumentation"]
-        return (
-            f"<s>[INST] <</SYS>>\nGiven a puzzle-like code question, provide a well-reasoned, step-by-step Python solution.\n<</SYS>>\n\n"
-            f"{user_text} [/INST] {assistant_text} </s>"
-        )
-
-    transformed_df = df.apply(transform, axis=1).to_frame(name="text")
-    transformed_df.reset_index(drop=True, inplace=True)
-
+    if filename is None:
+        filename = "../" + wandb.config.DATASET_NAME
+    df = pd.read_json(filename)
     return df
 
 
-def load_data():
-    """Load the new dataset."""
-    dataset = load_dataset(wandb.config.NEW_DATASET_NAME)
-    return dataset
-
-
-def store_dataset_locally(dataset, filename: str | None = None) -> None:
+def store_dataset_locally(dataset: pd.DataFrame, filename: str | None = None) -> None:
     """Store the dataset locally using pickle."""
-    filename = wandb.config.NEW_DATASET_NAME_LOCAL if filename is None else filename
+    if filename is None:
+        filename = wandb.config.NEW_DATASET_NAME_LOCAL
+
     with open(filename, "wb") as file:
         pickle.dump(dataset, file)
 
 
-def load_dataset_from_local(filename: str | None = None):
+def load_dataset_from_local(filename: str | None = None) -> pd.DataFrame:
     """Load the dataset from a local directory using pickle."""
-    filename = wandb.config.NEW_DATASET_NAME_LOCAL if filename is None else filename
+    if filename is None:
+        filename = wandb.config.NEW_DATASET_NAME_LOCAL
+
     with open(filename, "rb") as file:
         dataset = pickle.load(file)
+
     return dataset
 
 
-def transform_dataset_format(df):
+def transform_dataset_format(df: pd.DataFrame) -> pd.DataFrame:
     """Transform the dataframe into a specified format."""
 
     def transform(row):
-        user_text = row["question"]
-        assistant_text = row["answer"]
+        user_text = row[wandb.config.X_COLUMN]
+        assistant_text = row[wandb.config.Y_COLUMN]
         return f"<s>[INST] <</SYS>>\n{wandb.config.SYSTEM_MESSAGE.strip()}\n<</SYS>>\n\n" f"{user_text} [/INST] {assistant_text} </s>"
 
     transformed_df = df.apply(transform, axis=1).to_frame(name="text")
@@ -59,19 +57,14 @@ def transform_dataset_format(df):
     return transformed_df
 
 
-def generate_dataset():
-    dataset = load_data_to_fine_tune()
-    # transformed_dataset = transform_dataset_format(dataset)
-    print(dataset)
-    store_dataset_locally(dataset)
-
-
 if __name__ == "__main__":
-    dataset_name = "../../data/processed/process_documentation30.pkl"
+    load_configs()
+    dataset_name_local = "../../data/processed/" + wandb.config.NEW_DATASET_NAME_LOCAL
 
-    dataset = load_json_to_dataframe()
-    store_dataset_locally(dataset=dataset, filename=dataset_name)
-    dataset = load_dataset_from_local(filename=dataset_name)
+    dataset = load_json_to_dataframe(filename="../../data/raw/GPT4_synthetic_data.json")
+    transformed_dataset = transform_dataset_format(dataset)
+    store_dataset_locally(dataset=dataset, filename=dataset_name_local)
+    dataset = load_dataset_from_local(filename=dataset_name_local)
 
     for i in range(5):
         print(f"** Documentation Instruction ** \n{dataset.loc[i, 'documentationInstruction']}")
