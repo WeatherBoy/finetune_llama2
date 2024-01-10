@@ -1,0 +1,273 @@
+[
+    {
+        "documentationInstruction": "Jeg justerede medicinen for fru Ingrid Johansen, som er 82 år, fordi hun oplevede ubehag i sit højre knæ på grund af gigt. Vi hjalp hende med hendes morgenhygiejne og snakkede om hendes havearbejde, som hun er glad for. Husk at notere, at vi skal holde øje med hendes smerter efter medicinændringen og opmuntre hende til lette øvelser. Jeg informerede også hendes datter om ændringen i medicinering og øvelserne under hendes besøg.",
+        "processedDocumentation": {
+            "patient": "Ingrid Johansen",
+            "age": 82,
+            "observations": "Ubehag i højre knæ på grund af gigt og tilpassede medicinering som følge af ubehagen.",
+            "care_provided": "Hjælp til morgenhygiejne og samtale om havearbejde.",
+            "plan": "Overvåge smerten efter medicinændring, opmuntre til lette øvelser.",
+            "family_interaction": "Informerede datteren om medicinændring og øvelser."
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Erik Larsen, som er 75 år, havde højere blodtryk i morges, 160 over 90, og han virkede stresset over personlige sager. Vi gav ham hans blodtryksmedicin og forsøgte at skabe et beroligende miljø. Vi bør overvåge hans blodtryk og stressniveau og arrangere et møde med vores psykolog. Til vores næste teammøde skal vi gennemgå hans blodtrykstendenser for at se, om vi skal justere hans plejeplan.",
+        "processedDocumentation": {
+            "patient": "Erik Larsen",
+            "age": 75,
+            "observations": "Forhøjet blodtryk (160/90 mmHg), virkede stresset.",
+            "care_provided": "Givet blodtryksmedicin, skabt et beroligende miljø.",
+            "plan": "Overvåge blodtryk og stress, arrangere psykologmøde.",
+            "team_discussion": "Gennemgå blodtrykstendenser i næste teammøde."
+        }
+    },
+    {
+        "documentationInstruction": "Fru Anna Nielsen, 79 år, faldt i sit værelse i dag, men heldigvis blev hun ikke skadet. Hun virkede lidt desorienteret, da det skete. Kan du notere, at vi udførte en fuld undersøgelse efter hendes fald og sikrede, at hendes værelse er sikkert? Vi gennemgik også hendes medicin for at se, om de kunne forårsage svimmelhed. Vi planlægger at indføre yderligere sikkerhedsforanstaltninger, som grebsstænger i hendes badeværelse, og vil holde øje med hende for yderligere forvirring. Vi diskuterede også hendes fald på teammødet for at minde alle om faldforebyggelse og reaktion.",
+        "processedDocumentation": {
+            "patient": "Anna Nielsen",
+            "age": 79,
+            "observations": "Mindre fald i værelset, virkede desorienteret.",
+            "care_provided": "Fuldstændig vurdering post-fald, sikret værelset. Udelukkede svimmelhed som bivirkning ved medicineringen.",
+            "plan": "Implementere yderligere sikkerhedsforanstaltninger, monitorere for desorientering.",
+            "team_discussion": "Diskuterede faldforebyggelse i teammødet."
+        }
+    },
+    {
+        "documentationInstruction": "Lars Svendsen, der er 80 år, skal have tættere overvågning af hans diabetes. Hans blodsukkerniveauer har svinget. Vi har koordineret med diætisten for at justere hans måltider, og vi kontrollerer hans blodsukker regelmæssigt. Noter venligst, at vi planlægger at konsultere endokrinologen for en mulig ændring af hans medicin. Opdater også teamet om, at vi har foretaget disse ændringer i hans diabetesstyring under vores næste tværfaglige møde.",
+        "processedDocumentation": {
+            "patient": "Lars Svendsen",
+            "age": 80,
+            "observations": "Fluktuerende blodsukkerniveauer ved diabetes påkræver tættere overvågning.",
+            "care_provided": "Koordineret med diætist, regelmæssig blodsukkerkontrol.",
+            "plan": "Konsultation med endokrinolog for medicinjustering.",
+            "team_discussion": "Team skal opdateres om ændringer i diabetesstyring."
+        }
+    },
+    {
+        "documentationInstruction": "Fru Birgitte Pedersen, 81 år, klagede over smerter i lænden. Vi gav hende smertestillende og aftalte en konsultation med en fysioterapeut. Hun blev også hjulpet med at gå en lille tur for at forbedre hendes mobilitet. Noter venligst, at vi skal følge op på hendes smerte og mobilitet næste uge.",
+        "processedDocumentation": {
+            "patient": "Birgitte Pedersen",
+            "age": 81,
+            "observations": "Klager over lændesmerter.",
+            "care_provided": "Givet smertestillende, gåtur for mobilitet, aftalt fysioterapeut konsultation.",
+            "plan": "Opfølgning på smerte og mobilitet næste uge."
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Jens Møller, 77 år, viste tegn på mild dehydrering og træthed. Vi sikrede, at han drak tilstrækkeligt med vand og hvilede. Det er vigtigt at holde øje med hans væskeindtag og generelle velbefindende i den kommende tid.",
+        "processedDocumentation": {
+            "patient": "Jens Møller",
+            "age": 77,
+            "observations": "Mild dehydrering og træthed.",
+            "care_provided": "Øget væskeindtag og hvile.",
+            "plan": "Monitorere væskeindtag og velbefindende."
+        }
+    },
+    {
+        "documentationInstruction": "Fru Karen Kristensen, 83 år, udviste forvirring og glemte hendes aftaler i dag. Vi gennemførte en kognitiv vurdering og arrangerede en aftale med hendes læge for nærmere undersøgelse. Det er vigtigt at vi observerer hendes kognitive funktioner løbende. Informer venligst hendes familie om situationen og vores skridt.",
+        "processedDocumentation": {
+            "patient": "Karen Kristensen",
+            "age": 83,
+            "observations": "Forvirring og glemsomhed.",
+            "care_provided": "Kognitiv vurdering, arrangeret lægeaftale.",
+            "plan": "Løbende observation af kognitive funktioner.",
+            "family_interaction": "Familien skal informeres om situationen."
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Peter Nielsen, 78 år, har bemærket en forværring af sit syn. Vi har arrangeret en øjenundersøgelse og justeret belysningen i hans værelse for bedre synlighed. Det er vigtigt at vi fortsætter med at støtte ham i hans daglige aktiviteter og vurderer behovet for yderligere hjælpemidler.",
+        "processedDocumentation": {
+            "patient": "Peter Nielsen",
+            "age": 78,
+            "observations": "Forværring af syn.",
+            "care_provided": "Arrangeret øjenundersøgelse, justeret belysning i værelse.",
+            "plan": "Støtte i daglige aktiviteter, vurdere behov for hjælpemidler."
+        }
+    },
+    {
+        "documentationInstruction": "Patienten er, Bodil Jespersen, en 85-årig kvinde med en historie med arthritis. Hun rapporterede øget ledsmerter og besvær med at bevæge sig. Assisteret med medicin og anbefalet lette øvelser. Familien blev rådgivet om hendes tilstand og plejeplan.",
+        "processedDocumentation": {
+            "patient": "85-årig kvinde",
+            "age": 85,
+            "observations": "Øgede ledsmerter, besvær med bevægelse",
+            "care_provided": "Assistance med medicin, anbefalede lette øvelser",
+            "plan": "Overvåg smerter, opfølgning om en uge",
+            "family_interaction": "Rådgav familien om tilstand og plejeplan",
+            "miscellanous": "Historie med arthritis"
+        }
+    },
+    {
+        "documentationInstruction": "Hans Peter Larsen, 78-årig mand, med diabetes havde et rutinetjek. Hans blodsukkerniveau er stabilt. Fortsat med den nuværende medicin. Diskuterede kost og motion. Ingen familie til stede under besøget.",
+        "processedDocumentation": {
+            "patient": "78-årig mand",
+            "age": 78,
+            "observations": "Stabilt blodsukkerniveau",
+            "care_provided": "Rutinetjek, fortsat nuværende medicin",
+            "plan": "Vedligehold kost og motionsregime",
+            "miscellanous": "Diabetes"
+        }
+    },
+    {
+        "documentationInstruction": "Fru Hanne Jensen, 84 år, viser tegn på forbedring efter sin hofteoperation. Hun er begyndt at gå med støtte og har mindre smerter. Vi har tilpasset hendes smertestillende medicin og aftalte en konsultation med en fysioterapeut",
+        "processedDocumentation": {
+            "patient": "Hanne Jensen",
+            "age": 84,
+            "observations": "Forbedring efter hofteoperation, begyndt at gå med støtte, mindre smerter",
+            "care_provided": "Tilpasset smertestillende medicin og aftalt konsultation ved fysioterapeut",
+            "plan": "Fortsætte rehabilitering og overvågning"
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Ole Kristensen, 76 år, har udviklet en hoste og lidt feber. Vi har taget prøver for at udelukke infektion og justeret hans væskeindtag. Det er vigtigt at overvåge hans symptomer og reagere hurtigt. Opfølgende aftale om podning er aftalt med lægen.",
+        "processedDocumentation": {
+            "patient": "Ole Kristensen",
+            "age": 76,
+            "observations": "Hoste og let feber",
+            "care_provided": "Taget prøver, justeret væskeindtag",
+            "plan": "Overvågning af symptomer, hurtig reaktion ved forværring, opfølgende aftale om podning"
+        }
+    },
+    {
+        "documentationInstruction": "Fru Else Mortensen, 88 år, viste tegn på angst og uro. Vi brugte beroligende teknikker og tilbød lette aktiviteter for at aflede hende. Vi planlægger at gennemgå hendes medicin for at se, om der skal foretages justeringer.",
+        "processedDocumentation": {
+            "patient": "Else Mortensen",
+            "age": 88,
+            "observations": "Angst og uro",
+            "care_provided": "Beroligende teknikker, lette aktiviteter",
+            "plan": "Gennemgå og eventuelt justere medicin"
+        }
+    },
+    {
+        "documentationInstruction": "Fru Elsebeth Rasmussen, 82 år, har haft forstoppelse i de sidste par dage. Vi har justeret hendes kost for at inkludere mere fiber og sørget for, at hun får tilstrækkeligt med væske. Hendes søn blev informeret og anbefalet at købe nogle bestemte fødevarer.",
+        "processedDocumentation": {
+            "patient": "Elsebeth Rasmussen",
+            "age": 82,
+            "observations": "Forstoppelse",
+            "care_provided": "Kostjustering, øget fiberindtag, væskeindtag",
+            "plan": "Fortsat observation og kostjustering",
+            "family_interaction": "Sønnen informeret og rådgivet om kost"
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Niels Jørgensen, 79 år, har haft flere episoder af desorientering. Vi har udført en grundig vurdering og planlægger at konsultere en neurolog. Hans datter er bekymret, så vi har haft en længere samtale med hende om hans tilstand.",
+        "processedDocumentation": {
+            "patient": "Niels Jørgensen",
+            "age": 79,
+            "observations": "Episoder af desorientering",
+            "care_provided": "Grundig vurdering",
+            "plan": "Konsultation med neurolog",
+            "family_interaction": "Datteren informeret og beroliget"
+        }
+    },
+    {
+        "documentationInstruction": "Fru Agnes Kristiansen, 77 år, klaget over smerter i hendes højre skulder. Vi har anvendt varmepuder og planlægger fysioterapi.",
+        "processedDocumentation": {
+            "patient": "Agnes Kristiansen",
+            "age": 77,
+            "observations": "Smerter i højre skulder",
+            "care_provided": "Varmepuder, planlægger fysioterapi",
+            "plan": "Overvåge smerter, starte fysioterapi"
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Karl Mortensen, 81 år, viste tegn på forbedring efter sin lungebetændelse. Han trækker vejret bedre og er mere aktiv. Vi fortsætter med antibiotika og overvåger hans vitale tegn.",
+        "processedDocumentation": {
+            "patient": "Karl Mortensen",
+            "age": 81,
+            "observations": "Forbedring efter lungebetændelse",
+            "care_provided": "Antibiotika, overvågning af vitale tegn",
+            "plan": "Fortsat behandling og overvågning"
+        }
+    },
+    {
+        "documentationInstruction": "Fru Lene Svendsen, 76 år, har været meget nedtrykt på det seneste. Vi har involveret vores psykiatriske sygeplejerske for vurdering og støtte. Vi planlægger også at øge de sociale aktiviteter for hende.",
+        "processedDocumentation": {
+            "patient": "Lene Svendsen",
+            "age": 76,
+            "observations": "Nedtrykthed",
+            "care_provided": "Vurdering af psykiatrisk sygeplejerske, øgede sociale aktiviteter",
+            "plan": "Mental sundhedsstøtte og sociale aktiviteter"
+        }
+    },
+
+    {
+        "documentationInstruction": "Fru Karin Madsen, 83 år, klager over svimmelhed og træthed. Jeg justerede hendes blodtryksmedicin og planlægger yderligere evaluering. Vi diskuterede også hendes kost og væskeindtag.",
+        "processedDocumentation": {
+            "patient": "Karin Madsen",
+            "age": 83,
+            "observations": "Svimmelhed og træthed, muligvis relateret til blodtryksmedicin.",
+            "care_provided": "Justering af blodtryksmedicin, kost- og væskeindtagsdiskussion.",
+            "plan": "Yderligere evaluering af tilstanden."
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Søren Pedersen, 76 år, udviser tegn på forbedring i sin rehabilitering efter hofteoperation. Vi har øget hans fysioterapitimer og opmuntret til selvstændige øvelser. Han udtrykte glæde over fremskridtet.",
+        "processedDocumentation": {
+            "patient": "Søren Pedersen",
+            "age": 76,
+            "observations": "Forbedring efter hofteoperation.",
+            "care_provided": "Øget fysioterapi, opmuntring til selvstændige øvelser.",
+            "plan": "Fortsat rehabilitering med øgede øvelser."
+        }
+    },
+    {
+        "documentationInstruction": "Fru Lisbeth Andersen, 81 år, udviklede en hudirritation. Vi anvendte en beroligende salve og vil overvåge hendes reaktion. Vi diskuterede også potentielle allergener i hendes omgivelser. Der er blevet planlagt en opfølgning med lægen.",
+        "processedDocumentation": {
+            "patient": "Lisbeth Andersen",
+            "age": 81,
+            "observations": "Hudirritation",
+            "care_provided": "Anvendt beroligende salve, diskussion om allergener.",
+            "plan": "Overvågning af reaktion på behandling og opfølgning ved læge."
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Jørgen Kristiansen, 78 år, har udtrykt bekymring for sin synsforringelse. Vi har arrangeret en aftale med en øjenlæge og justeret belysningen i hans område.",
+        "processedDocumentation": {
+            "patient": "Jørgen Kristiansen",
+            "age": 78,
+            "observations": "Bekymring for synsforringelse",
+            "care_provided": "Aftale med øjenlæge, justering af belysning",
+            "plan": "Øjenundersøgelse, fortsat opfølgning"
+        }
+    },
+    
+    {
+        "documentationInstruction": "Hr. Niels Pedersen, 78 år, klagede over søvnproblemer og følte sig urolig om natten. Jeg foreslog en let aftensmad og mindre kaffeindtag. Vi aftalte at spille stille musik for at hjælpe ham med at slappe af. Husk at overvåge hans søvnmønster og justere planen, hvis nødvendigt.",
+        "processedDocumentation": {
+            "patient": "Niels Pedersen",
+            "age": 78,
+            "observations": "Klager over søvnproblemer, urolig om natten.",
+            "care_provided": "Foreslået let aftensmad, reduceret kaffe, spillet stille musik.",
+            "plan": "Overvågning af søvnmønster, justering af plan efter behov."
+        }
+    },
+    {
+        "documentationInstruction": "Fru Karen Madsen, 81 år, viste tegn på forbedring i hendes mobilitet. Hun kunne gå længere afstande med rollatoren. Vi øgede hendes fysioterapi-sessioner for at opbygge styrke. Husk at revidere hendes rehabiliteringsplan for at reflektere disse fremskridt.",
+        "processedDocumentation": {
+            "patient": "Karen Madsen",
+            "age": 81,
+            "observations": "Forbedring i mobilitet, kan gå længere med rollator.",
+            "care_provided": "Øgede fysioterapi-sessioner for yderligere styrkeopbygning.",
+            "plan": "Revision af rehabiliteringsplan for at afspejle fremskridt."        }
+    },
+    {
+        "documentationInstruction": "Hr. Jens Sørensen, 76 år, havde et øget behov for emotionel støtte, da han følte sig ensom. Vi arrangerede regelmæssige samtaler med vores psykolog og oprettede en social gruppe for at møde andre beboere. Vigtigt at overvåge hans følelsesmæssige velbefindende og justere planen efter behov.",
+        "processedDocumentation": {
+            "patient": "Jens Sørensen",
+            "age": 76,
+            "observations": "Øget behov for emotionel støtte, føler sig ensom.",
+            "care_provided": "Arrangerede samtaler med psykolog, oprettet social gruppe.",
+            "plan": "Overvågning af følelsesmæssigt velbefindende, justering af plan."
+        }
+    },
+    {
+        "documentationInstruction": "Fru Bodil Andersen, 83 år, viste tegn på forbedring efter sin lungebetændelse. Hun responderede godt på antibiotika og hendes vejrtrækning var blevet mere stabil. Opdater hendes medicinske journal med disse oplysninger og overvåge hendes helbredstilstand løbende.",
+        "processedDocumentation": {
+            "patient": "Bodil Andersen",
+            "age": 83,
+            "observations": "Forbedring efter lungebetændelse, god respons på antibiotika.",
+            "care_provided": "Vejrtrækning blevet mere stabil, fortsat medicinering.",
+            "plan": "Løbende overvågning af helbredstilstand."
+        }
+    }
+]

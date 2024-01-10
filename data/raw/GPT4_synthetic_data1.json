@@ -1,0 +1,46 @@
+[
+    {
+        "documentationInstruction": "Jeg justerede medicinen for fru Ingrid Johansen, som er 82 år, fordi hun oplevede ubehag i sit højre knæ på grund af gigt. Vi hjalp hende med hendes morgenhygiejne og snakkede om hendes havearbejde, som hun er glad for. Husk at notere, at vi skal holde øje med hendes smerter efter medicinændringen og opmuntre hende til lette øvelser. Jeg informerede også hendes datter om ændringen i medicinering og øvelserne under hendes besøg.",
+        "processedDocumentation": {
+            "patient": "Ingrid Johansen",
+            "age": 82,
+            "observations": "Ubehag i højre knæ på grund af gigt og tilpassede medicinering som følge af ubehagen.",
+            "care_provided": "Hjælp til morgenhygiejne og samtale om havearbejde.",
+            "plan": "Overvåge smerten efter medicinændring, opmuntre til lette øvelser.",
+            "family_interaction": "Informerede datteren om medicinændring og øvelser."
+        }
+    },
+    {
+        "documentationInstruction": "Hr. Erik Larsen, som er 75 år, havde højere blodtryk i morges, 160 over 90, og han virkede stresset over personlige sager. Vi gav ham hans blodtryksmedicin og forsøgte at skabe et beroligende miljø. Vi bør overvåge hans blodtryk og stressniveau og arrangere et møde med vores psykolog. Til vores næste teammøde skal vi gennemgå hans blodtrykstendenser for at se, om vi skal justere hans plejeplan.",
+        "processedDocumentation": {
+            "patient": "Erik Larsen",
+            "age": 75,
+            "observations": "Forhøjet blodtryk (160/90 mmHg), virkede stresset.",
+            "care_provided": "Givet blodtryksmedicin, skabt et beroligende miljø.",
+            "plan": "Overvåge blodtryk og stress, arrangere psykologmøde.",
+            "team_discussion": "Gennemgå blodtrykstendenser i næste teammøde."
+        }
+    },
+    {
+        "documentationInstruction": "Fru Anna Nielsen, 79 år, faldt i sit værelse i dag, men heldigvis blev hun ikke skadet. Hun virkede lidt desorienteret, da det skete. Kan du notere, at vi udførte en fuld undersøgelse efter hendes fald og sikrede, at hendes værelse er sikkert? Vi gennemgik også hendes medicin for at se, om de kunne forårsage svimmelhed. Vi planlægger at indføre yderligere sikkerhedsforanstaltninger, som grebsstænger i hendes badeværelse, og vil holde øje med hende for yderligere forvirring. Vi diskuterede også hendes fald på teammødet for at minde alle om faldforebyggelse og reaktion.",
+        "processedDocumentation": {
+            "patient": "Anna Nielsen",
+            "age": 79,
+            "observations": "Mindre fald i værelset, virkede desorienteret.",
+            "care_provided": "Fuldstændig vurdering post-fald, sikret værelset. Udelukkede svimmelhed som bivirkning ved medicineringen.",
+            "plan": "Implementere yderligere sikkerhedsforanstaltninger, monitorere for desorientering.",
+            "team_discussion": "Diskuterede faldforebyggelse i teammødet."
+        }
+    },
+    {
+        "documentationInstruction": "Lars Svendsen, der er 80 år, skal have tættere overvågning af hans diabetes. Hans blodsukkerniveauer har svinget. Vi har koordineret med diætisten for at justere hans måltider, og vi kontrollerer hans blodsukker regelmæssigt. Noter venligst, at vi planlægger at konsultere endokrinologen for en mulig ændring af hans medicin. Opdater også teamet om, at vi har foretaget disse ændringer i hans diabetesstyring under vores næste tværfaglige møde.",
+        "processedDocumentation": {
+            "patient": "Lars Svendsen",
+            "age": 80,
+            "observations": "Fluktuerende blodsukkerniveauer ved diabetes påkræver tættere overvågning.",
+            "care_provided": "Koordineret med diætist, regelmæssig blodsukkerkontrol.",
+            "plan": "Konsultation med endokrinolog for medicinjustering.",
+            "team_discussion": "Team skal opdateres om ændringer i diabetesstyring."
+        }
+    }
+]
